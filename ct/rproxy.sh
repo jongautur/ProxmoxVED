@@ -35,7 +35,7 @@ function update_script() {
   msg_ok "Stopped rproxy"
 
   msg_info "Updating rproxy"
-  runuser -u rproxy -- bash /opt/rproxy/scripts/update-app.sh
+  runuser -u rproxy -- env RPROXY_SKIP_RESTART=1 bash /opt/rproxy/scripts/update-app.sh
   msg_ok "Updated rproxy"
 
   msg_info "Starting rproxy"
