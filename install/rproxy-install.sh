@@ -35,6 +35,14 @@ msg_info "Installing rproxy Application"
 $STD runuser -u rproxy -- bash /opt/rproxy/scripts/install-app.sh
 msg_ok "Installed rproxy Application"
 
+msg_info "Creating Update Command"
+cat <<'EOF' >/usr/bin/update
+#!/usr/bin/env bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/jongautur/ProxmoxVED/rproxy-beta/ct/rproxy.sh)"
+EOF
+chmod +x /usr/bin/update
+msg_ok "Created Update Command"
+
 motd_ssh
 customize
 cleanup_lxc
